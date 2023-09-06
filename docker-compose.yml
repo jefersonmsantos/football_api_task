@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mysql:8.1.0
+    command: mysqld --default_authentication_plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: deeltask123
+      MYSQL_USER: deeltask
+      MYSQL_PASSWORD: deeltask
+      MYSQL_DATABASE: deel_football_api
+    ports:
+      - "3308:3306"
+    networks:
+      - api-football-network
+
+  football-app:
+    build: .
+    networks:
+      - api-football-network
+    environment:
+      API_KEY: ${API_KEY}
+    depends_on:
+      - db
+    volumes:
+      - ./artifact/files:/opt/artifact/files
+
+networks:
+  api-football-network:
+    driver: bridge
