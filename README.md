@@ -41,6 +41,7 @@ The docker-compose.yml file spins up two containers: db and football-app
 - Image executes file main.py, that executes the following scripts in sequence:
     - create_tables.py: This file connects to the mysql db and create the three following tables represented on the model:
 
+![Relational_model](images/relational_model.png)
 
 
         - MATCHES: contains data from each match, with teams, score, referee, round and date. Its unique column is match_id
