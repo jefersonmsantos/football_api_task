@@ -15,7 +15,7 @@ This project uses docker containers to spin up a Mysql Database and run a series
 3. Register an account on the [apifootball site](https://apifootball.com/) (opt for a [temporary email](https://temp-mail.org/en/) for convenience) and secure the API key.
 4. Export the secured API key on a Environment Variable called API_KEY
 ```console
-  export API_KEY = <your-api-key-from-apifootball>
+  export API_KEY=<your-api-key-from-apifootball>
   ```
 5. In the main folder of the repo, execute the command below to start application
 ```console
