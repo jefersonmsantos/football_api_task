@@ -5,7 +5,6 @@ import os
 def import_data():
     url = "https://apiv3.apifootball.com/?action=get_events"
     API_KEY = os.getenv('API_KEY')
-    #API_KEY= "11d7031956ed5e022833ae33ce1ddd3334f8644b7b63e10e20f0785444d91d0c"
     data=[]
 
     for date in [{"from": "2022-08-11", "to": "2022-11-11"},{"from": "2022-11-12", "to": "2023-05-29"}]:
