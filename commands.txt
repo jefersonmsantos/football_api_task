@@ -1,0 +1,1 @@
+docker image rm task_deel-football-app

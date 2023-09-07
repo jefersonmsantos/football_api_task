@@ -17,16 +17,19 @@ This project uses docker containers to spin up a Mysql Database and run a series
 ```console
   export API_KEY=<your-api-key-from-apifootball>
   ```
-5. In the main folder of the repo, execute the command below to start application
+5. Create a folder called "files" inside folder artifact
+```console
+  mkdir artifact/files
+  ```
+6. In the main folder of the repo, execute the command below to start application
 ```console
   docker-compose up
   ```
-6. When the process finishes, you should find the generated .csv files in the folder /artifact/files
-7. To stop the process, press Ctrl+C, and then execute
+7. When the process finishes, you should find the generated .csv files in the folder /artifact/files
+8. To stop the process, press Ctrl+C, and then execute
 ```console
   docker-compose rm
   ```
-
 
 
 ## Architechture
