@@ -1,12 +1,15 @@
+x-env: &env
+  MYSQL_ROOT_PASSWORD: deeltask123
+  MYSQL_USER: deeltask
+  MYSQL_PASSWORD: deeltask
+  MYSQL_DATABASE: deel_football_api
+
 services:
   db:
     image: mysql:8.1.0
     command: mysqld --default_authentication_plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: deeltask123
-      MYSQL_USER: deeltask
-      MYSQL_PASSWORD: deeltask
-      MYSQL_DATABASE: deel_football_api
+      <<: *env
     ports:
       - "3308:3306"
     networks:
@@ -17,6 +20,7 @@ services:
     networks:
       - api-football-network
     environment:
+      <<: *env
       API_KEY: ${API_KEY}
     depends_on:
       wait-for-db:

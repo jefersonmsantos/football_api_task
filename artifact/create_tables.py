@@ -1,17 +1,20 @@
 import sqlalchemy
-from time import sleep
+import os
 
 def create_tables():
-    #sleep(35)
+    MYSQL_USER = os.getenv('MYSQL_USER')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
 
-    engine = sqlalchemy.create_engine("mysql+pymysql://deeltask:deeltask@db:3306/deel_football_api")
+    engine = sqlalchemy.create_engine(f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@db:3306/deel_football_api")
     with engine.connect() as connection:
-    
+        
+        # Dropping tables if exist on database
         connection.execute(sqlalchemy.text("DROP TABLE IF EXISTS MATCHES"))
         connection.execute(sqlalchemy.text("DROP TABLE IF EXISTS CARDS"))
         connection.execute(sqlalchemy.text("DROP TABLE IF EXISTS GOALSCORER"))
 
         #Creating table as per requirement
+        #Matches table
         sql_matches ='''CREATE TABLE MATCHES(
         match_id INT,
         league_id INT,
@@ -28,6 +31,7 @@ def create_tables():
         )'''
         connection.execute(sqlalchemy.text(sql_matches))
 
+        #Cards table
         sql_cards ='''CREATE TABLE CARDS(
         match_id INT,
         time VARCHAR(30),
@@ -41,6 +45,7 @@ def create_tables():
         )'''
         connection.execute(sqlalchemy.text(sql_cards))
 
+        #Goalscorer table
         sql_goalscorer ='''CREATE TABLE GOALSCORER(
         match_id INT,
         time VARCHAR(30),
@@ -59,8 +64,3 @@ def create_tables():
         connection.execute(sqlalchemy.text(sql_goalscorer))
     
     return "Created tables"
-
-
-
-#Closing the connection
-#conn.close()

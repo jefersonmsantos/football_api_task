@@ -3,7 +3,10 @@ import sqlalchemy
 import os
 
 def query_and_export_data():
-    engine = sqlalchemy.create_engine("mysql+pymysql://deeltask:deeltask@db:3306/deel_football_api")
+    MYSQL_USER = os.getenv('MYSQL_USER')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+
+    engine = sqlalchemy.create_engine(f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@db:3306/deel_football_api")
 
     with engine.connect() as connection:
 

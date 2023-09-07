@@ -1,6 +1,6 @@
 # API Footbal Task
 
-This project uses docker containers to spin up a Mysql Database and run a series of Python scripts to extract data from English Premier League matches from API Football, process and select fields, store on Mysql, perform some queries and return reports on csv files.
+This project uses docker containers to spin up a Mysql Database and run a series of Python scripts to extract English Premier League matches data from API Football, process and select fields, store on Mysql, perform some queries and return reports on csv files.
 
 ---
 
@@ -41,7 +41,7 @@ The docker-compose.yml file spins up two containers: db and football-app
 ### football-app
 - Image for this container is created with Dockerfile.
 - Python files executed by this container are in the folder artifact.
-- Image executes file main.py, that executes the following scripts in sequence:
+- Image executes file main.py, which executes the following scripts in sequence:
     - **create_tables.py**: This file connects to the mysql db and create the three following tables represented on the model:
 
         ![Relational_model](images/relational_model.png)
@@ -55,7 +55,7 @@ The docker-compose.yml file spins up two containers: db and football-app
     - **import_data.py**: This file connects to apifootball Events endpoint and request data for the English Premier Leage 2022 - 2023 season. Request is processed to generate three lists of dictionaries, one for each table described on the previous session. Each dictionary on the list is one row which is then inserted on each table. The fields selected from the API response are the one used to create the tables.
 
     - **query_and_export_data.py**: This file perform 4 queries on db:
-        - Final League Table: outputs the following columns: position, team_name, matches_played, won, draw, lost, goals_scored, goals_conceded, and points.
+        - query_a - Final League Table: outputs the following columns: position, team_name, matches_played, won, draw, lost, goals_scored, goals_conceded, and points.
             Points allocation:
             - Victories: 3 points each
             - Draws: 1 point each
@@ -65,8 +65,8 @@ The docker-compose.yml file spins up two containers: db and football-app
                 - Higher goals scored
                 - Fewer goals conceded
                 - More victories
-        - Display all teams sorted by Away goals scored. Columns: team_name, goals.
-        - Top 5 Referees with Most Cards: Columns: referee_name, cards
-        - Top 3 Goal Scorers by Match Round 14: Columns: player_name, team_name, and goals 
+        - query_b - Display all teams sorted by Away goals scored. Columns: team_name, goals.
+        - query_c - Top 5 Referees with Most Cards: Columns: referee_name, cards
+        - query_d - Top 3 Goal Scorers by Match Round 14: Columns: player_name, team_name, and goals 
 
         The .sql files for these queries are on artifact/queries folder. When it finishes, the 4 .csv files will be available on folder artifact/files on your local machine
