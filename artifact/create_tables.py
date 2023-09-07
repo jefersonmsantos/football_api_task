@@ -2,18 +2,11 @@ import sqlalchemy
 from time import sleep
 
 def create_tables():
-    sleep(35)
+    #sleep(35)
 
     engine = sqlalchemy.create_engine("mysql+pymysql://deeltask:deeltask@db:3306/deel_football_api")
-    #establishing the connection
-    # conn = mysql.connector.connect(
-    #    user='deeltask', password='deeltask', host='127.0.0.1', database='deel_football_api', port = '3308'
-    # )
-
-    #Creating a cursor object using the cursor() method
-    #cursor = conn.cursor()
     with engine.connect() as connection:
-    #Dropping tables table if already exists.
+    
         connection.execute(sqlalchemy.text("DROP TABLE IF EXISTS MATCHES"))
         connection.execute(sqlalchemy.text("DROP TABLE IF EXISTS CARDS"))
         connection.execute(sqlalchemy.text("DROP TABLE IF EXISTS GOALSCORER"))

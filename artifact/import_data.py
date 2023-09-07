@@ -18,7 +18,20 @@ def import_data():
     goalscorer = []
     cards = []
 
+    team_name_corrections_map={
+        "Newcastle":"Newcastle United",
+        "Manchester Utd":"Manchester United",
+        "Tottenham":"Tottenham Hotspur",
+        "West Ham":"West Ham United"
+    }
+
     for match in data:
+        if match["match_hometeam_name"] in team_name_corrections_map.keys():
+            match["match_hometeam_name"] = team_name_corrections_map[match["match_hometeam_name"]]
+
+        if match["match_awayteam_name"] in team_name_corrections_map.keys():
+            match["match_awayteam_name"] = team_name_corrections_map[match["match_awayteam_name"]]
+
 
         matches.append({"match_id":match["match_id"],
                     "league_id":match["league_id"],
