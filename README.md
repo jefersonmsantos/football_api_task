@@ -17,7 +17,7 @@ This project uses docker containers to spin up a Mysql Database and run a series
 ```console
   export API_KEY=<your-api-key-from-apifootball>
   ```
-5. Create a folder called "files" inside folder artifact
+5. Create a folder called "files" inside folder artifact. In the main folder of the repo execute the following command
 ```console
   mkdir artifact/files
   ```
