@@ -1,7 +1,12 @@
-import requests
 import sqlalchemy
 import os
-from utils import read_data_from_api, fix_team_names,extract_match_data,extract_goalscorer_data,extract_cards_data,insert_data_into_db
+from utils import (
+    read_data_from_api, 
+    fix_team_names,
+    extract_match_data,
+    extract_goalscorer_data,
+    extract_cards_data,insert_data_into_db
+)
 
 def import_data():
     url = "https://apiv3.apifootball.com/?action=get_events"
